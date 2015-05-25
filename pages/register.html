@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fawofolo Fool</title>
+
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messages_cn.js"></script>
+
+<script type="text/javascript">
+	$.validator.addMethod("validateCitizenId", function(value) {
+		var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];
+		var ValideCode = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
+		
+		if(value.length != 18){
+			return false;
+		}else{
+			var code = value.split("");
+			var sum = 0;
+			var ai = 0;
+			var wi = 0;
+
+			for(var i = 0; i < 17; ++i){
+				ai = code[i];
+				wi = Wi[i];
+				sum = sum + ai * wi;
+			}
+
+			 var last = ValideCode[sum % 11];
+
+			 if(last == code[17]){
+			 	return true;
+			 }else{
+			 	return false;
+			 }
+		}
+
+	}, 'Fawofolo are you a fool? Please input a correct citizenId !!!!');
+
+	$().ready(function(){
+		var validator = $("#register").validate({
+			debug: false,
+			errorElement: "em",
+			errorPlacement: function(error, element) {
+				error.appendTo(element.parent());
+			},
+
+			rules: {
+				customerId: {
+					required: true,
+					email: true
+				},
+				customerName: {
+					required: true
+				},
+				password:{
+					required: true,
+					minlength: 6,
+					maxlength: 12
+				},
+				rePassword: {
+					equalTo: "#password"
+				},
+				citizenId: "validateCitizenId",
+				birthDate: {
+					required: true,
+					dateISO: true
+				}
+			},
+
+			messages: {
+				customerId: {
+					// required: "CustomerID cannot be empty, stupid !",
+					// email: "Fawofolo are you a fool? customerId should be a email address"
+				},
+				customerName: {
+					required: "CustomerName cannot be empty, stupid !"
+				},
+				password: {
+					required: "Password cannot be empty, stupid !",
+					minlength: "Fawofolo are you a fool? Password should at least 6 characters",
+					maxlength: "Fawofolo are you a fool? Password should at most 12 characters"
+				},
+				rePassword: {
+					equalTo: "Fawofolo are you a fool? The passwords you entered must be the same"
+				},
+				birthDate: {
+					required: "BirthDate cannot be empty, stupid !",
+					dateISO: "Fawofolo are you a fool? BirthDate should be a date format"
+				}
+			}
+		});
+	});
+
+</script>
+
+<style type="text/css">
+em.error {
+
+  padding-left: 16px;
+
+  padding-bottom: 2px;
+
+  font-weight: bold;
+
+  color: #EA5200;
+}
+</style>
+
+</head>
+<body>
+<h1 style="color: lime">Hello Fawofolo, do you know you are a big fool ??</h1>
+<form id="register" method="get" action="">
+	<fieldset>
+		<legend style="color: red">Fawofolo is a big fool</legend>
+		<p>
+			<lable for="customerId">CustomerID (required, an email) &emsp; </label>
+			<input type="text" name="customerId" id="customerId" placeholder="input your customerId"/>
+		</p>
+		<p>
+			<label for="customerName">CustomerName (required) &emsp;</label>
+			<input type="text" name="customerName" id="customerName" placeholder="input your customerName"/>
+		</p>	
+		<p>
+			<label for="password">Password (requried 6--12 characters) &emsp;</label>
+			<input type="password" name="password" id="password"/>
+		</p>
+		<p>
+			<label for="rePassword">Confirm Password &emsp;</label>
+			<input type="password" name="rePassword" id="rePassword"/>
+		</p>
+		<p>
+			<label for="citizenId">CitizenId (required) &emsp;</label>
+			<input type="text" name="citizenId" id="citizenId"/>
+		</p>
+		<p>
+			<label for="birthDate">BirthDate (required) &emsp;</label>
+			<input type="text" name="birthDate" id="birthDate"/>
+		</p>
+		<p>
+			<button type="submit">Submit</button>
+		</p>
+	</fieldset>
+</form>
+
+
+</body>
+</html>	

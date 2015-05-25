@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery Validate 插件 - 自定义方法和消息显示</title>
+
+<!--<link rel="stylesheet" type="text/css" media="screen" href="static/jquery-validation/demo/css/screen.css" />-->
+
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.validate.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="../js/myValidator.js"></script>
+
+
+
+</head>
+<body>
+
+<div id="main">
+
+<form class="cmxform" id="texttests" method="get" action="">
+	<h2 id="summary"></h2>
+
+	<fieldset>
+		<legend>自定义方法和错误消息显示</legend>
+			<div class="error"></div>
+			<p>
+				<td><label for="number">文本框</label></td>
+				<td><input id="number" name="number"/></td>
+				<p></p>
+			</p>
+			<p>
+				<td><label for="secret">密钥</label></td>
+				<td><input name="secret" id="secret" /></td>
+				<p></p>
+			</p>
+			<p>
+				<td><label for="math">7 + 4 = </label></td>
+				<td><input id="math" name="math"/></td>
+				<p></p>
+			</p>
+		<p>
+			<input class="submit" type="submit" value="提交"/>
+		</p>
+	</fieldset>
+</form>
+
+</div>
+
+
+</body>
+</html>			
+			
